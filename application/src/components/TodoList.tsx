@@ -1,7 +1,7 @@
 'use client'
 
 import { type FC, useTransition } from 'react'
-import { Grid, Button, Group, Checkbox, Paper } from '@mantine/core';
+import { Table, Grid, Button, Group, Checkbox, Paper } from '@mantine/core';
 
 import { deleteTodo, doneTodo } from '@/actions/todo';
 import type { Todo } from '@prisma/client';
@@ -14,21 +14,29 @@ const TodoList: FC<Props> = ({ todos }) => {
   let [_, startTransition] = useTransition();
 
   return (
-    <Grid>
-      {todos.map((todo) => (
-        <Grid.Col span={4} key={todo.id}>
-          <Paper shadow="sm" p="sm" radius="sm" withBorder>
-            <Group justify='space-between' align='center' wrap="nowrap">
+    <Table striped>
+      <Table.Thead>
+        <Table.Tr>
+          <Table.Th>内容</Table.Th>
+          <Table.Th>&ensp;</Table.Th>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>
+        {todos.map((todo) => (
+          <Table.Tr key={todo.id}>
+            <Table.Td width="100%">
               <Checkbox
                 checked={todo.published}
                 label={todo.title}
                 styles={{ root: { wordBreak: 'break-all' } }}
                 onChange={() => startTransition(() => doneTodo(todo.id, todo.published))}
               />
+            </Table.Td>
+            <Table.Td>
               <form>
                 <input type="hidden" name="id" value={todo.id} />
                 <Button
-                  variant='filled'
+                  variant='outline'
                   color='red'
                   size="xs"
                   type='submit'
@@ -42,11 +50,11 @@ const TodoList: FC<Props> = ({ todos }) => {
                   削除
                 </Button>
               </form>
-            </Group>
-          </Paper>
-        </Grid.Col>
-      ))}
-    </Grid>
+            </Table.Td>
+          </Table.Tr>
+        ))}
+      </Table.Tbody>
+    </Table>
   )
 }
 

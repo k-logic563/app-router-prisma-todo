@@ -16,7 +16,9 @@ const Home = async () => {
       <Title order={1} mb="md">Todo一覧</Title>
       <AddTodo />
       <Space h={32} />
-      <TodoList todos={todos} />
+      { todos.length !== 0 && (
+        <TodoList todos={todos} />
+      )}
     </Container>
   )
 }
