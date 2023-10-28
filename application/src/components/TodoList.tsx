@@ -1,7 +1,7 @@
 'use client'
 
 import { type FC, useTransition } from 'react'
-import { Table, Grid, Button, Group, Checkbox, Paper } from '@mantine/core';
+import { Table, Button, Checkbox } from '@mantine/core';
 
 import { deleteTodo, doneTodo } from '@/actions/todo';
 import type { Todo } from '@prisma/client';
