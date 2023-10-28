@@ -1,17 +1,23 @@
 import prisma from '@/lib/prisma';
+import { Title, Container, Space } from '@mantine/core';
 
 import TodoList from '@/components/TodoList';
 import AddTodo from '@/components/AddTodo';
 
 const Home = async () => {
-  const todos = await prisma.todo.findMany();
+  const todos = await prisma.todo.findMany({
+    orderBy: {
+      id: 'asc',
+    }
+  });
 
   return (
-    <main className="p-24">
-      <h1 className="text-xl font-bold mb-8">Todo一覧</h1>
+    <Container py={24}>
+      <Title order={1} mb="md">Todo一覧</Title>
       <AddTodo />
+      <Space h={32} />
       <TodoList todos={todos} />
-    </main>
+    </Container>
   )
 }
 
