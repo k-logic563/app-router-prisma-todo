@@ -12,6 +12,11 @@ async function main() {
   await prisma.todo.create({
     data: {
       title: 'todo-2',
+    }
+  })
+  await prisma.todo.create({
+    data: {
+      title: 'todo-3',
       published: true
     }
   })

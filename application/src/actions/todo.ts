@@ -1,4 +1,4 @@
-'use server';
+'use server'
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
@@ -15,20 +15,21 @@ export const deleteTodo = async (data: FormData) => {
   const id = data.get('id') as string;
   await prisma.todo.delete({
     where: {
-      id: Number(id),
+      id: +id,
     },
   });
-  revalidatePath('/posts');
+  revalidatePath('/');
 };
 
 export async function doneTodo(id: number, published: boolean) {
+  'use server';
   await prisma.todo.update({
     where: {
-      id: Number(id),
+      id: +id,
     },
     data: {
       published: !published,
     },
   });
-  revalidatePath('/posts');
+  revalidatePath('/');
 }
