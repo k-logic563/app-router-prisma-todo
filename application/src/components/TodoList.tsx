@@ -11,8 +11,6 @@ type Props = {
 }
 
 const TodoList: FC<Props> = ({ todos }) => {
-  let [_, startTransition] = useTransition();
-
   return (
     <Table striped>
       <Table.Thead>
@@ -29,7 +27,7 @@ const TodoList: FC<Props> = ({ todos }) => {
                 checked={todo.published}
                 label={todo.title}
                 styles={{ root: { wordBreak: 'break-all' } }}
-                onChange={() => startTransition(() => doneTodo(todo.id, todo.published))}
+                onChange={() => doneTodo(todo.id, todo.published)}
               />
             </Table.Td>
             <Table.Td>
