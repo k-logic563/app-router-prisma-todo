@@ -3,14 +3,14 @@
 import { type FC, useTransition } from 'react'
 import { Table, Button, Checkbox } from '@mantine/core';
 
-import { deleteTodo, doneTodo } from '@/actions/todo';
+import { deleteTodo, doneTodo } from '../actions/todo';
 import type { Todo } from '@prisma/client';
 
 type Props = {
   todos: Todo[]
 }
 
-const TodoList: FC<Props> = ({ todos }) => {
+const List: FC<Props> = ({ todos }) => {
   return (
     <Table striped>
       <Table.Thead>
@@ -56,4 +56,4 @@ const TodoList: FC<Props> = ({ todos }) => {
   )
 }
 
-export default TodoList
+export default List

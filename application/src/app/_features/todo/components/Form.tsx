@@ -1,10 +1,10 @@
 'use client';
 
-import { addTodo } from '@/actions/todo';
+import { addTodo } from '../actions/todo';
 import { TextInput, Button } from '@mantine/core';
 import { useRef } from 'react';
 
-const AddTodo = () => {
+const Form = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const add = async (data: FormData) => {
     const todo = `${data.get('todo')}`;
@@ -24,4 +24,4 @@ const AddTodo = () => {
   );
 };
 
-export default AddTodo;
+export default Form;

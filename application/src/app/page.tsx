@@ -1,8 +1,8 @@
-import prisma from '@/lib/prisma';
+import prisma from '@lib/prisma';
 import { Title, Container, Space } from '@mantine/core';
 
-import TodoList from '@/components/TodoList';
-import AddTodo from '@/components/AddTodo';
+import List from '@features/todo/components/List';
+import Form from '@features/todo/components/Form';
 
 const Home = async () => {
   const todos = await prisma.todo.findMany({
@@ -13,11 +13,11 @@ const Home = async () => {
 
   return (
     <Container py={24}>
-      <Title order={1} mb="md">Todo一覧</Title>
-      <AddTodo />
+      <Title order={1} mb="md">AppRouter+Prisma Todoアプリ</Title>
+      <Form />
       <Space h={32} />
       { todos.length !== 0 && (
-        <TodoList todos={todos} />
+        <List todos={todos} />
       )}
     </Container>
   )
